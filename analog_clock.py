@@ -5,12 +5,14 @@ import math
 
 pygame.init()
 FPS = 30
-WIDTH = HEIGHT = 600
+WIDTH = HEIGHT = 400 # 300 minimum
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Analog Clock")
 clock = pygame.time.Clock()
 
 CLOCK_RADIUS = WIDTH // 2
+CENTER_PIN_RADIUS = int(WIDTH / 300 * 4)
+
 # Lengths of clock hands
 SECONDS_HAND_LENGTH = 0.8 * CLOCK_RADIUS
 SECONDS_HAND_TAIL = 0.1 * SECONDS_HAND_LENGTH
@@ -22,18 +24,18 @@ HOUR_HAND_LENGTH = 0.45 * CLOCK_RADIUS
 HOUR_HAND_TAIL = 0.1 * HOUR_HAND_LENGTH
 
 # These increase in size as clock size increases
-HOUR_TICK_LENGTH = WIDTH // 300 * 10
-HOUR_TICK_WIDTH = WIDTH // 300 * 2
+HOUR_TICK_LENGTH = int(WIDTH / 300 * 10)
+HOUR_TICK_WIDTH = int(WIDTH / 300 * 2)
 TICK_PADDING_FROM_EDGE = 15
-MIN_TICK_LENGTH = WIDTH // 300 * 5
-MIN_TICK_WIDTH = WIDTH // 300 * 1
+MIN_TICK_LENGTH = int(WIDTH / 300 * 5)
+MIN_TICK_WIDTH = int(WIDTH / 300 * 1)
 
 # Angles in degrees
 ANGLE_PER_HOUR = 30
 ANGLE_PER_MIN = 6
 ANGLE_PER_SEC = 6
 
-numbers_font_size = WIDTH // 300 * 24
+numbers_font_size = int(WIDTH / 300 * 24)
 NUMBERS_FONT = pygame.font.Font(size=numbers_font_size)
 NUMBER_TICK_PADDING = 15
 
@@ -132,7 +134,7 @@ while running:
     hours_angle = hours * ANGLE_PER_HOUR
     start = rotate_point(hours_angle, center, start_pos)
     end = rotate_point(hours_angle, center, end_pos)
-    pygame.draw.line(screen, HOUR_HAND_COLOR, start, end, 4)
+    pygame.draw.line(screen, HOUR_HAND_COLOR, start, end, 6)
 
     # Minutes hand
     start_pos = center_x, center_y - MINUTES_HAND_LENGTH
@@ -140,7 +142,7 @@ while running:
     minutes_angle = minutes * ANGLE_PER_MIN
     start = rotate_point(minutes_angle, center, start_pos)
     end = rotate_point(minutes_angle, center, end_pos)
-    pygame.draw.line(screen, MINUTES_HAND_COLOR, start, end, 4)
+    pygame.draw.line(screen, MINUTES_HAND_COLOR, start, end, 5)
 
     # Seconds hand
     start_pos = center_x, center_y - SECONDS_HAND_LENGTH
@@ -151,7 +153,7 @@ while running:
     pygame.draw.line(screen, SECONDS_HAND_COLOR, start, end, 4)
 
     # Center pin
-    pygame.draw.circle(screen, CENTER_PIN_COLOR, center, 4)
+    pygame.draw.circle(screen, CENTER_PIN_COLOR, center, CENTER_PIN_RADIUS)
 
     pygame.display.update()
     clock.tick(FPS)
