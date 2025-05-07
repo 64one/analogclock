@@ -1,6 +1,7 @@
 # Analog Clock
 
 A Python-based analog clock simulation built with Pygame. This project renders a customizable analog clock with hour, minute, and second hands that display the current system time.
+![analog_clock](https://github.com/user-attachments/assets/e16799bb-d228-4661-8eba-c0dba6615da1)
 
 ## Features
 - Real-time display of the current system time
